@@ -5,11 +5,13 @@
  */
 
 
+import java.awt.Color;
 import java.util.Random;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -41,10 +43,19 @@ public class DiagramPanel extends javax.swing.JFrame {
         
         JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, dataset);
         
+        XYPlot plot = chart.getXYPlot();
+        plot.setOutlinePaint(Color.BLACK);
+        plot.setBackgroundPaint(Color.DARK_GRAY);
+        plot.setRangeGridlinesVisible(true);
+        plot.setRangeGridlinePaint(Color.BLACK);
+        plot.setDomainGridlinesVisible(true);
+        plot.setDomainGridlinePaint(Color.BLACK);
+        
         return new ChartPanel(chart);
     }
     
     private XYDataset createDataset(){
+        //Gør så x og y bliver random generated i stedet for det er nogle faste værdier.
         Random ran = new Random();
         
         XYSeriesCollection dataset = new XYSeriesCollection();
