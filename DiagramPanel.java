@@ -5,6 +5,7 @@
  */
 
 
+import java.util.Random;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -32,9 +33,9 @@ public class DiagramPanel extends javax.swing.JFrame {
     }
     
     private JPanel createChartPanel(){
-        String chartTitle = "Diagram";
+        String chartTitle = "Data Diagram";
         String xAxisLabel = "Tid";
-        String yAxisLabel = "fadsgag"/**Find et eller andet fancy navn til den her*/;
+        String yAxisLabel = "%";
         
         XYDataset dataset = createDataset();
         
@@ -44,14 +45,16 @@ public class DiagramPanel extends javax.swing.JFrame {
     }
     
     private XYDataset createDataset(){
+        Random ran = new Random();
+        
         XYSeriesCollection dataset = new XYSeriesCollection();
         XYSeries series1 = new XYSeries("Object 1");
         
-        series1.add(1.0, 2.0);
-        series1.add(2.0, 3.0);
-        series1.add(3.0, 2.5);
-        series1.add(3.5, 2.8);
-        series1.add(4.2, 6.0);
+        series1.add(ran.nextDouble(), ran.nextDouble());
+        series1.add(ran.nextDouble(), ran.nextDouble());
+        series1.add(ran.nextDouble(), ran.nextDouble());
+        series1.add(ran.nextDouble(), ran.nextDouble());
+        series1.add(ran.nextDouble(), ran.nextDouble());
         
         dataset.addSeries(series1);
         
