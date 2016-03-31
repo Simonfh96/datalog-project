@@ -11,4 +11,13 @@ package model;
  */
 public class TPS {
     
+    
+    
+    
+    public int getData(int data){
+        
+        data = (int) Math.random()+255;
+        return data;
+    }
+    
 }
