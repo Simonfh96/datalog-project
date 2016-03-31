@@ -4,19 +4,62 @@
  * and open the template in the editor.
  */
 
+
+import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 /**
  *
- * @author Simon
+ * @author ThorNissen
  */
-public class userInterface extends javax.swing.JFrame {
+public class DiagramPanel extends javax.swing.JFrame {
 
     /**
-     * Creates new form userInterface
+     * Creates new form NewJFrame
      */
-    public userInterface() {
-        initComponents();
+    public DiagramPanel() {
+        JPanel chartPanel = createChartPanel();
+        add(chartPanel);
+        
+        setSize(640, 480);
+        setDefaultCloseOperation(DiagramPanel.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
-
+    
+    private JPanel createChartPanel(){
+        String chartTitle = "Diagram";
+        String xAxisLabel = "Tid";
+        String yAxisLabel = "fadsgag"/**Find et eller andet fancy navn til den her*/;
+        
+        XYDataset dataset = createDataset();
+        
+        JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, dataset);
+        
+        return new ChartPanel(chart);
+    }
+    
+    private XYDataset createDataset(){
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        XYSeries series1 = new XYSeries("Object 1");
+        
+        series1.add(1.0, 2.0);
+        series1.add(2.0, 3.0);
+        series1.add(3.0, 2.5);
+        series1.add(3.5, 2.8);
+        series1.add(4.2, 6.0);
+        
+        dataset.addSeries(series1);
+        
+        return dataset;
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,11 +75,11 @@ public class userInterface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 597, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -59,20 +102,23 @@ public class userInterface extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(userInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DiagramPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(userInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DiagramPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(userInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DiagramPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(userInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DiagramPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new userInterface().setVisible(true);
+                new DiagramPanel().setVisible(true);
             }
         });
     }
